@@ -142,10 +142,13 @@ export default function QuizApp() {
       } catch (error) {
         console.error(error);
 
-        setQuestions(
-          shuffle(activeBank.levels[0])
-        );
-      }
+   setQuestions(
+  shuffle([
+    ...activeBank.levels[0],
+    ...activeBank.levels[0],
+    ...activeBank.levels[0]
+  ])
+);
 
       setLoading(false);
     }
