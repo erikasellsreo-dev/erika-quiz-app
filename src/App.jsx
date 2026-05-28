@@ -244,25 +244,32 @@ const aiQuestionSeeds = {
   ]
 };
 
-function generateAIQuestions(topic, difficulty, count = 10) {
-  const seeds = aiQuestionSeeds[topic];
-  const difficultyKey = difficulty === "Advanced" ? "hard" : difficulty === "Intermediate" ? "medium" : "easy";
-
-  return Array.from({ length: count }, (_, index) => {
-    const seed = seeds[index % seeds.length];
-    const wrongOptions = topic === "dslr"
-      ? ["Memory card size", "Camera strap", "Battery brand", "Lens cap"]
-      : ["Pot color", "Plant label", "Decorative stones only", "Music near the plant"];
-
-    return {
-      question: seed[difficultyKey],
-      options: shuffle([seed.correct, ...shuffle(wrongOptions).slice(0, 3)]),
-      answer: seed.correct,
-      explanation: seed.explanation,
-      aiGenerated: true,
-      concept: seed.concept
-    };
+async function generateAIQuestions(topic, difficulty, count = 10) {
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: "gpt-4.1-mini",
+      messages: [
+        {
+          role: "user",
+          content: `Create ${count} multiple choice quiz questions about ${topic} at ${difficulty} level. Return ONLY JSON array format with:
+          question,
+          options,
+          answer,
+          explanation`
+        }
+      ],
+      temperature: 0.8
+    })
   });
+
+  const data = await response.json();
+
+  return JSON.parse(data.choices[0].message.content);
 }
 
 export default function QuizApp() {
