@@ -154,7 +154,13 @@ export default function QuizApp() {
   }, [topic, difficulty]);
 
   const currentQuestion = questions?.[questionIndex];
-
+if (!currentQuestion && !loading) {
+  return (
+    <div className="min-h-screen flex items-center justify-center text-2xl font-bold">
+      No questions loaded.
+    </div>
+  );
+}
   const progress = questions.length
     ? ((questionIndex + 1) / questions.length) * 100
     : 0;
