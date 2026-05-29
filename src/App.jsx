@@ -168,13 +168,7 @@ function generateAIQuestions(topic, difficulty, count = 10) {
     }
   ];
 
-  return shuffle(
-    Array.from({ length: count }, (_, i) => ({
-      ...seeds[i % seeds.length],
-      aiGenerated: true
-    }))
-  );
-}
+  
   const response = await fetch(
     "https://api.openai.com/v1/chat/completions",
     {
