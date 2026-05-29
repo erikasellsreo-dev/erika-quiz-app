@@ -113,7 +113,7 @@ function shuffle(array) {
   return [...array].sort(() => Math.random() - 0.5);
 }
 
-function generateAIQuestions(topic, difficulty, count = 10) {
+async function generateAIQuestions(topic, difficulty, count = 10) {
   const seeds = [
     {
       question: "What does aperture mainly control?",
@@ -168,8 +168,8 @@ function generateAIQuestions(topic, difficulty, count = 10) {
     }
   ];
 
-  
-  const response = await fetch(
+  try {
+    const response = await fetch(
     "https://api.openai.com/v1/chat/completions",
     {
       method: "POST",
@@ -209,6 +209,15 @@ explanation`
     ...item,
     aiGenerated: true
   }));
+}));
+  } catch (err) {
+    return shuffle(
+      Array.from({ length: count }, (_, i) => ({
+        ...seeds[i % seeds.length],
+        aiGenerated: true
+      }))
+    );
+  }
 }
 
 export default function QuizApp() {
