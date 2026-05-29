@@ -83,7 +83,9 @@ const quizBanks = {
     answer: "Color temperature",
     explanation:
       "White balance controls color tone."
-  }
+ }
+      ]],
+    },
 
   },
 
