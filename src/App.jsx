@@ -31,9 +31,59 @@ const quizBanks = {
   dslr: {
     label: "DSLR Photos",
     icon: Camera,
-    levels: [[
-      {
-        question: "What does aperture mainly control?",
+   levels: [[
+  {
+    question: "What does aperture mainly control?",
+    options: [
+      "Battery life",
+      "Depth of field",
+      "Memory card speed",
+      "White balance"
+    ],
+    answer: "Depth of field",
+    explanation:
+      "Aperture affects how much of the scene appears sharp."
+  },
+
+  {
+    question: "Which setting freezes fast motion?",
+    options: [
+      "Slow shutter",
+      "Fast shutter",
+      "ISO only",
+      "White balance"
+    ],
+    answer: "Fast shutter",
+    explanation:
+      "Fast shutter speeds freeze motion."
+  },
+
+  {
+    question: "What does high ISO add?",
+    options: [
+      "Noise",
+      "Battery life",
+      "Zoom",
+      "Sharpness"
+    ],
+    answer: "Noise",
+    explanation:
+      "Higher ISO can add image grain."
+  },
+
+  {
+    question: "What does white balance adjust?",
+    options: [
+      "Color temperature",
+      "Lens zoom",
+      "Battery",
+      "Storage"
+    ],
+    answer: "Color temperature",
+    explanation:
+      "White balance controls color tone."
+  }
+]]
         options: [
           "Battery life",
           "Depth of field",
