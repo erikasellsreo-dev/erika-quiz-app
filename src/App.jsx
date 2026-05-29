@@ -87,7 +87,7 @@ const quizBanks = {
       ]],
     },
 
-  },
+
 
   plants: {
     label: "Plants",
