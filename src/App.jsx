@@ -238,34 +238,63 @@ export default function QuizApp() {
   const activeBank = quizBanks[topic];
   const Icon = activeBank.icon;
 
-  useEffect(() => {
-    async function loadQuestions() {
-      setLoading(true);
+ useEffect(() => {
+  const demoQuestions = [
+    {
+      question: "What does aperture mainly control?",
+      options: [
+        "Battery life",
+        "Depth of field",
+        "Memory card speed",
+        "White balance"
+      ],
+      answer: "Depth of field",
+      explanation:
+        "Aperture affects how much appears sharp."
+    },
 
-      try {
-        const aiQuestions = await generateAIQuestions(
-          topic,
-          difficulty,
-          10
-        );
+    {
+      question: "What does high ISO add?",
+      options: [
+        "Noise",
+        "Battery",
+        "Zoom",
+        "Sharpness"
+      ],
+      answer: "Noise",
+      explanation:
+        "High ISO can create grain."
+    },
 
-        setQuestions(shuffle(aiQuestions));
-      } catch (error) {
-        console.error(error);
+    {
+      question: "What causes root rot?",
+      options: [
+        "Too much sun",
+        "Overwatering",
+        "Cold air",
+        "Wind"
+      ],
+      answer: "Overwatering",
+      explanation:
+        "Roots rot in constantly wet soil."
+    },
 
-   setQuestions(
-  shuffle([
-    ...activeBank.levels[0],
-    ...activeBank.levels[0],
-    ...activeBank.levels[0]
-  ])
-);
-
-      setLoading(false);
+    {
+      question: "Why use drainage holes?",
+      options: [
+        "Decoration",
+        "Release extra water",
+        "Increase humidity",
+        "Grow roots outside"
+      ],
+      answer: "Release extra water",
+      explanation:
+        "Drainage prevents soggy soil."
     }
+  ];
 
-    loadQuestions();
-  }, [topic, difficulty]);
+  setQuestions(shuffle(demoQuestions));
+}, [topic]);
 
   const currentQuestion = questions?.[questionIndex];
 if (!currentQuestion && !loading) {
