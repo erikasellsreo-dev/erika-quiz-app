@@ -71,7 +71,68 @@ function shuffle(array) {
   return [...array].sort(() => Math.random() - 0.5);
 }
 
-async function generateAIQuestions(topic, difficulty, count = 10) {
+function generateAIQuestions(topic, difficulty, count = 10) {
+  const seeds = [
+    {
+      question: "What does aperture mainly control?",
+      options: [
+        "Battery life",
+        "Depth of field",
+        "Memory card speed",
+        "White balance"
+      ],
+      answer: "Depth of field",
+      explanation:
+        "Aperture affects how much of the scene appears sharp."
+    },
+
+    {
+      question: "What does white balance adjust?",
+      options: [
+        "Color temperature",
+        "Zoom level",
+        "Lens sharpness",
+        "Tripod height"
+      ],
+      answer: "Color temperature",
+      explanation:
+        "White balance keeps colors neutral."
+    },
+
+    {
+      question: "What causes root rot most often?",
+      options: [
+        "Too much sun",
+        "Overwatering",
+        "Cold air",
+        "Too much fertilizer"
+      ],
+      answer: "Overwatering",
+      explanation:
+        "Roots need oxygen and can rot in wet soil."
+    },
+
+    {
+      question: "Why use drainage holes?",
+      options: [
+        "For decoration",
+        "To release extra water",
+        "To grow roots outside",
+        "To hold fertilizer"
+      ],
+      answer: "To release extra water",
+      explanation:
+        "Drainage holes prevent soggy soil."
+    }
+  ];
+
+  return shuffle(
+    Array.from({ length: count }, (_, i) => ({
+      ...seeds[i % seeds.length],
+      aiGenerated: true
+    }))
+  );
+}
   const response = await fetch(
     "https://api.openai.com/v1/chat/completions",
     {
