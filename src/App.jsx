@@ -84,18 +84,7 @@ const quizBanks = {
     explanation:
       "White balance controls color tone."
   }
-]]
-        options: [
-          "Battery life",
-          "Depth of field",
-          "Memory card speed",
-          "White balance"
-        ],
-        answer: "Depth of field",
-        explanation:
-          "Aperture affects how much of the scene appears sharp."
-      }
-    ]]
+
   },
 
   plants: {
