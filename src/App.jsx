@@ -1,3 +1,4 @@
+alert("NEW VERSION LOADED");
 import React, { useEffect, useState } from "react";
 import {
   Camera,
